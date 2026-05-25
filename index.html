@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clue — Coming Soon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #1a152b;
+    background-image: radial-gradient(ellipse at center, #0d1e2e 20%, #1a152b 85%);
+    color: #d8e8ff;
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .container {
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .tagline {
+    font-size: 0.85rem;
+    color: #46607c;
+    margin-bottom: 48px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .card {
+    background: #0c1224;
+    border: 1px solid #182338;
+    border-radius: 16px;
+    padding: 32px 28px;
+    margin-bottom: 16px;
+  }
+
+  .wip-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #101929;
+    border: 1px solid #1d2b44;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #00c2ff;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 20px;
+  }
+  .wip-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #00c2ff;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .card h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #eef4ff;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .card p {
+    font-size: 0.83rem;
+    color: #6678a0;
+    line-height: 1.7;
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 24px;
+    text-align: left;
+  }
+
+  .feature {
+    background: #101929;
+    border: 1px solid #1d2b44;
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+
+  .feature-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #00c2ff;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .feature-desc {
+    font-size: 0.73rem;
+    color: #46607c;
+    line-height: 1.5;
+  }
+
+  .notify-card {
+    background: #0c1224;
+    border: 1px solid #182338;
+    border-radius: 16px;
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-align: left;
+    text-decoration: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .notify-card:hover {
+    border-color: #007acc;
+    box-shadow: 0 0 0 1px #007acc33;
+  }
+
+  .tg-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: #101929;
+    border: 1px solid #1d2b44;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.3rem;
+  }
+
+  .notify-text { flex: 1; }
+  .notify-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #d8e8ff;
+    margin-bottom: 2px;
+  }
+  .notify-sub { font-size: 0.75rem; color: #46607c; }
+
+  .notify-arrow { color: #2e4060; font-size: 0.9rem; flex-shrink: 0; }
+
+  footer {
+    margin-top: 40px;
+    font-size: 0.7rem;
+    color: #1d2b44;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="logo">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <defs>
+        <linearGradient id="logo-grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#bd9bbc"/>
+          <stop offset="100%" stop-color="#82b3c1"/>
+        </linearGradient>
+      </defs>
+      <circle cx="10.5" cy="10.5" r="6.5" stroke="url(#logo-grad)"/>
+      <line x1="15.5" y1="15.5" x2="21" y2="21" stroke="url(#logo-grad)"/>
+    </svg>
+    Clue
+  </div>
+  <div class="tagline">Telegram Gift Intelligence</div>
+
+  <div class="card">
+    <div class="wip-badge"><span class="wip-dot"></span> In Development</div>
+    <h2>Something good is coming.</h2>
+    <p>Clue is a search and analysis tool for Telegram gifts. Find rare traits, calculate monochrome scores, and browse every gift across all collections — all in one place.</p>
+
+    <div class="features">
+      <div class="feature">
+        <div class="feature-label">Gift Search</div>
+        <div class="feature-desc">Filter by collection, model, backdrop, and symbol with context-aware dropdowns.</div>
+      </div>
+      <div class="feature">
+        <div class="feature-label">Rarity Rankings</div>
+        <div class="feature-desc">See which traits are rarest across millions of gifts.</div>
+      </div>
+      <div class="feature">
+        <div class="feature-label">Monochrome Check</div>
+        <div class="feature-desc">Calculate how closely a gift's model color matches its backdrop.</div>
+      </div>
+      <div class="feature">
+        <div class="feature-label">Full Coverage</div>
+        <div class="feature-desc">Every Telegram gift collection, continuously updated.</div>
+      </div>
+    </div>
+  </div>
+
+  <a class="notify-card" href="https://t.me/cluesupport" target="_blank">
+    <div class="tg-icon">✈</div>
+    <div class="notify-text">
+      <div class="notify-title">Follow @cluesupport on Telegram</div>
+      <div class="notify-sub">Get notified when we launch.</div>
+    </div>
+    <span class="notify-arrow">→</span>
+  </a>
+
+  <footer>
+    Powered by <a href="https://t.me/hashtag" target="_blank" style="color:#2e4060;text-decoration:none;">@hashtag</a>
+  </footer>
+</div>
+
+</body>
+</html>
