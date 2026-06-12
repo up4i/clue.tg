@@ -168,6 +168,35 @@
 
   .notify-arrow { color: #2e4060; font-size: 0.9rem; flex-shrink: 0; }
 
+  .beta-btn {
+    display: block;
+    background: linear-gradient(135deg, #0d4a7a 0%, #0a3660 100%);
+    border: 1px solid #007acc;
+    border-radius: 16px;
+    padding: 18px 28px;
+    margin-bottom: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+  }
+  .beta-btn:hover {
+    border-color: #0090f0;
+    box-shadow: 0 0 0 1px #007acc44, 0 4px 20px #007acc22;
+    background: linear-gradient(135deg, #0f5a96 0%, #0d4578 100%);
+  }
+  .beta-btn-label {
+    font-size: 0.7rem;
+    color: #7ab8e8;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
   footer {
     margin-top: 40px;
     font-size: 0.7rem;
@@ -217,6 +246,11 @@
       </div>
     </div>
   </div>
+
+  <a class="beta-btn" href="https://app.clue.tg/gate">
+    <div class="beta-btn-label">Beta Access</div>
+    Use Clue in beta!
+  </a>
 
   <a class="notify-card" href="https://t.me/cluesupport" target="_blank">
     <div class="tg-icon">✈</div>
