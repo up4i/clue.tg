@@ -3,148 +3,303 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Clue — Coming Soon</title>
+<title>Clue — Telegram Gift Intelligence</title>
+<link rel="icon" type="image/png" href="/static/logosmallnobg.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
   body {
     background: #1a152b;
-    background-image: radial-gradient(ellipse at center, #0d1e2e 20%, #1a152b 85%);
+    background-image: radial-gradient(ellipse at 50% 0%, #0d1e2e 0%, #1a152b 70%);
     color: #d8e8ff;
     font-family: 'Inter', system-ui, sans-serif;
     min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  /* ── Nav ─────────────────────────────────────────────────────────────────── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    padding: 0 32px;
+    height: 58px;
+    background: rgba(10, 14, 28, 0.75);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #182338;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .nav-right { margin-left: auto; display: flex; align-items: center; gap: 10px; position: relative; }
+  .nav-link {
+    color: #6678a0;
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: color 0.15s;
+  }
+  .nav-link:hover { color: #d8e8ff; }
+  .nav-cta {
+    background: #00c2ff;
+    color: #07091a;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 7px 18px;
+    border-radius: 8px;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .nav-cta:hover { background: #00a8de; transform: translateY(-1px); }
+  .nav-hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: 1px solid #1d2b44;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #6678a0;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .nav-hamburger:hover { color: #d8e8ff; border-color: #2e4060; }
+  .nav-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 160px;
+    background: #0e1526;
+    border: 1px solid #1d2b44;
+    border-radius: 10px;
+    padding: 6px;
+    z-index: 100;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .nav-dropdown.open { display: block; }
+  .nav-dropdown a {
+    display: block;
+    padding: 8px 12px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #8899bb;
+    border-radius: 6px;
+    transition: background 0.12s, color 0.12s;
+  }
+  .nav-dropdown a:hover { background: #182338; color: #d8e8ff; }
+
+  /* ── Hero ─────────────────────────────────────────────────────────────────── */
+  .hero {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 40px 20px;
-  }
-
-  .container {
-    max-width: 480px;
-    width: 100%;
     text-align: center;
+    padding: 100px 24px 80px;
+    position: relative;
   }
 
-  .logo {
+  /* Subtle grid overlay */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,194,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,194,255,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at center top, black 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-size: 2.2rem;
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    color: #fff;
-    margin-bottom: 8px;
-  }
-
-  .tagline {
-    font-size: 0.85rem;
-    color: #46607c;
-    margin-bottom: 48px;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    font-weight: 500;
-  }
-
-  .card {
-    background: #0c1224;
-    border: 1px solid #182338;
-    border-radius: 16px;
-    padding: 32px 28px;
-    margin-bottom: 16px;
-  }
-
-  .wip-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+    gap: 7px;
     background: #101929;
     border: 1px solid #1d2b44;
     border-radius: 20px;
-    padding: 4px 12px;
-    font-size: 0.72rem;
+    padding: 5px 14px;
+    font-size: 0.7rem;
     font-weight: 600;
     color: #00c2ff;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 32px;
+  }
+  .pulse-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #00c2ff; flex-shrink: 0;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+  .hero-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .hero-wordmark {
+    font-size: 5rem;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    color: #fff;
+    line-height: 1;
+    background: linear-gradient(135deg, #eef4ff 30%, #82b3c1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: #6678a0;
+    max-width: 520px;
+    line-height: 1.65;
+    margin-bottom: 40px;
+  }
+  .hero-link {
+    color: #82b3c1;
+    text-decoration: underline;
+    text-decoration-color: rgba(130,179,193,0.35);
+    text-underline-offset: 2px;
+    transition: color 0.15s;
+  }
+  .hero-link:hover { color: #00c2ff; }
+
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #00c2ff;
+    color: #07091a;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 12px 28px;
+    border-radius: 10px;
+    transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+    box-shadow: 0 4px 20px rgba(0,194,255,0.25);
+  }
+  .btn-primary:hover { background: #00a8de; transform: translateY(-2px); box-shadow: 0 6px 28px rgba(0,194,255,0.35); }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: #6678a0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: 1px solid #1d2b44;
+    transition: all 0.15s;
+  }
+  .btn-secondary:hover { border-color: #2e4060; color: #88a2c8; background: #0c1224; }
+
+  /* ── Stats strip ─────────────────────────────────────────────────────────── */
+  .stats-strip {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    border-top: 1px solid #182338;
+    border-bottom: 1px solid #182338;
+    background: #080e1c;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .stats-strip::-webkit-scrollbar { display: none; }
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 40px;
+    border-right: 1px solid #182338;
+    min-width: 160px;
+    flex-shrink: 0;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #eef4ff;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #46607c;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    margin-bottom: 20px;
-  }
-  .wip-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #00c2ff;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+    margin-top: 6px;
   }
 
-  .card h2 {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #eef4ff;
-    margin-bottom: 10px;
-    letter-spacing: -0.01em;
+  /* ── Features ────────────────────────────────────────────────────────────── */
+  .section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 24px;
   }
-
-  .card p {
-    font-size: 0.83rem;
-    color: #6678a0;
-    line-height: 1.7;
-  }
-
-  .features {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 24px;
-    text-align: left;
-  }
-
-  .feature {
-    background: #101929;
-    border: 1px solid #1d2b44;
-    border-radius: 10px;
-    padding: 12px 14px;
-  }
-
-  .feature-label {
-    font-size: 0.72rem;
+  .section-label {
+    font-size: 0.7rem;
     font-weight: 600;
-    color: #00c2ff;
-    margin-bottom: 3px;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.08em;
+    color: #00c2ff;
+    margin-bottom: 12px;
+    text-align: center;
   }
-
-  .feature-desc {
-    font-size: 0.73rem;
+  .section-title {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #eef4ff;
+    text-align: center;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .section-sub {
+    font-size: 0.88rem;
     color: #46607c;
-    line-height: 1.5;
+    text-align: center;
+    max-width: 440px;
+    margin: 0 auto 52px;
+    line-height: 1.65;
   }
 
-  .notify-card {
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .feature-card {
     background: #0c1224;
     border: 1px solid #182338;
     border-radius: 16px;
-    padding: 20px 28px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    text-align: left;
-    text-decoration: none;
-    transition: border-color 0.15s, box-shadow 0.15s;
+    padding: 28px;
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .notify-card:hover {
-    border-color: #007acc;
-    box-shadow: 0 0 0 1px #007acc33;
+  .feature-card:hover {
+    border-color: #1d2b44;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
   }
-
-  .tg-icon {
+  .feature-icon {
     width: 40px;
     height: 40px;
     border-radius: 10px;
@@ -153,118 +308,343 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    font-size: 1.3rem;
-  }
-
-  .notify-text { flex: 1; }
-  .notify-title {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #d8e8ff;
-    margin-bottom: 2px;
-  }
-  .notify-sub { font-size: 0.75rem; color: #46607c; }
-
-  .notify-arrow { color: #2e4060; font-size: 0.9rem; flex-shrink: 0; }
-
-  .beta-btn {
-    display: block;
-    background: linear-gradient(135deg, #0d4a7a 0%, #0a3660 100%);
-    border: 1px solid #007acc;
-    border-radius: 16px;
-    padding: 18px 28px;
     margin-bottom: 16px;
-    text-align: center;
-    text-decoration: none;
-    color: #fff;
-    font-size: 0.9rem;
-    font-weight: 600;
+  }
+  .feature-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #eef4ff;
+    margin-bottom: 8px;
     letter-spacing: -0.01em;
-    transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
   }
-  .beta-btn:hover {
-    border-color: #0090f0;
-    box-shadow: 0 0 0 1px #007acc44, 0 4px 20px #007acc22;
-    background: linear-gradient(135deg, #0f5a96 0%, #0d4578 100%);
+  .feature-desc {
+    font-size: 0.82rem;
+    color: #46607c;
+    line-height: 1.65;
   }
-  .beta-btn-label {
-    font-size: 0.7rem;
-    color: #7ab8e8;
+  .feature-tag {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #00c2ff;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    font-weight: 600;
-    margin-bottom: 4px;
   }
 
+  /* Feature card — accent variant (Monochrome Calculator — highlighted) */
+  .feature-card.accent {
+    background: linear-gradient(135deg, #0d1a2e 0%, #0c1224 100%);
+    border-color: #2a4060;
+    box-shadow: 0 0 28px rgba(130,179,193,0.1), inset 0 1px 0 rgba(130,179,193,0.06);
+  }
+  .feature-card.accent:hover {
+    border-color: #3a5070;
+    box-shadow: 0 4px 32px rgba(130,179,193,0.15), inset 0 1px 0 rgba(130,179,193,0.08);
+  }
+  .feature-card.accent .feature-tag { color: #82b3c1; }
+
+  /* ── CTA banner ──────────────────────────────────────────────────────────── */
+  .cta-banner {
+    margin: 0 24px 80px;
+    max-width: 952px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #0c1224;
+    border: 1px solid #182338;
+    border-radius: 20px;
+    padding: 52px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-banner::before {
+    content: '';
+    position: absolute;
+    top: -40px; left: 50%; transform: translateX(-50%);
+    width: 300px; height: 200px;
+    background: radial-gradient(ellipse, rgba(0,194,255,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-banner h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #eef4ff;
+    margin-bottom: 10px;
+  }
+  .cta-banner p {
+    font-size: 0.88rem;
+    color: #46607c;
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+
+  /* ── Telegram card ───────────────────────────────────────────────────────── */
+  .tg-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #080e1c;
+    border: 1px solid #182338;
+    border-radius: 12px;
+    padding: 16px 20px;
+    max-width: 440px;
+    margin: 0 auto;
+    transition: border-color 0.15s;
+  }
+  .tg-card:hover { border-color: #007acc; }
+  .tg-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: #101929; border: 1px solid #1d2b44;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .tg-text { flex: 1; text-align: left; }
+  .tg-title { font-size: 0.85rem; font-weight: 600; color: #d8e8ff; margin-bottom: 2px; }
+  .tg-sub { font-size: 0.73rem; color: #46607c; }
+  .tg-arrow { color: #2e4060; font-size: 0.9rem; flex-shrink: 0; }
+
+  /* ── Footer ──────────────────────────────────────────────────────────────── */
   footer {
-    margin-top: 40px;
-    font-size: 0.7rem;
-    color: #1d2b44;
+    border-top: 1px solid #182338;
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-logo {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.88rem; font-weight: 700; color: #2e4060;
+  }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-link { font-size: 0.75rem; color: #2e4060; transition: color 0.15s; }
+  .footer-link:hover { color: #46607c; }
+  .footer-right { font-size: 0.75rem; color: #46607c; font-weight: 500; }
+
+  /* ── Responsive ──────────────────────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    nav { padding: 0 16px; }
+    .hero { padding: 72px 20px 60px; }
+    .hero-wordmark { font-size: 3.5rem; }
+    .hero-sub { font-size: 0.95rem; }
+    .stat-item { padding: 20px 24px; min-width: 130px; }
+    .stat-num { font-size: 1.4rem; }
+    .section { padding: 56px 20px; }
+    .section-title { font-size: 1.5rem; }
+    .features-grid { grid-template-columns: 1fr; }
+    .cta-banner { padding: 36px 24px; margin: 0 16px 60px; }
+    .cta-banner h2 { font-size: 1.4rem; }
+    footer { justify-content: center; text-align: center; }
+    .footer-links { justify-content: center; }
   }
 </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="logo">
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <defs>
-        <linearGradient id="logo-grad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#bd9bbc"/>
-          <stop offset="100%" stop-color="#82b3c1"/>
-        </linearGradient>
-      </defs>
-      <circle cx="10.5" cy="10.5" r="6.5" stroke="url(#logo-grad)"/>
-      <line x1="15.5" y1="15.5" x2="21" y2="21" stroke="url(#logo-grad)"/>
-    </svg>
+<!-- Nav -->
+<nav>
+  <div class="nav-logo">
+    <img src="/static/logosmallnobg.png" width="20" height="20" alt="Clue">
     Clue
   </div>
-  <div class="tagline">Telegram Gift Intelligence</div>
-
-  <div class="card">
-    <div class="wip-badge"><span class="wip-dot"></span> In Development</div>
-    <h2>Something good is coming.</h2>
-    <p>Clue is a search and analysis tool for Telegram gifts. Find rare traits, calculate monochrome scores, and browse every gift across all collections — all in one place.</p>
-
-    <div class="features">
-      <div class="feature">
-        <div class="feature-label">Gift Search</div>
-        <div class="feature-desc">Filter by collection, model, backdrop, and symbol with context-aware dropdowns.</div>
-      </div>
-      <div class="feature">
-        <div class="feature-label">Rarity Rankings</div>
-        <div class="feature-desc">See which traits are rarest across millions of gifts.</div>
-      </div>
-      <div class="feature">
-        <div class="feature-label">Monochrome Check</div>
-        <div class="feature-desc">Calculate how closely a gift's model color matches its backdrop.</div>
-      </div>
-      <div class="feature">
-        <div class="feature-label">Full Coverage</div>
-        <div class="feature-desc">Every Telegram gift collection, continuously updated.</div>
-      </div>
+  <div class="nav-right">
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" aria-haspopup="true" aria-expanded="false" aria-controls="nav-dropdown">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+    <div class="nav-dropdown" id="nav-dropdown" role="menu">
+      <a href="https://app.clue.tg/app#gifts" role="menuitem">Gifts</a>
+      <a href="https://app.clue.tg/app#collections" role="menuitem">Markets</a>
+      <a href="https://app.clue.tg/app#movement" role="menuitem">Movement</a>
+      <a href="https://app.clue.tg/app#tools" role="menuitem">Tools</a>
     </div>
   </div>
+</nav>
+<script>
+  const _hbBtn = document.getElementById('nav-hamburger');
+  const _hbDrop = document.getElementById('nav-dropdown');
+  _hbBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    const isOpen = _hbDrop.classList.toggle('open');
+    _hbBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+  document.addEventListener('click', () => {
+    _hbDrop.classList.remove('open');
+    _hbBtn.setAttribute('aria-expanded', 'false');
+  });
+</script>
 
-  <a class="beta-btn" href="https://app.clue.tg/gate">
-    <div class="beta-btn-label">Beta Access</div>
-    Use Clue in beta!
-  </a>
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-badge"><span class="pulse-dot"></span> Live — 10M+ gifts indexed</div>
+  <div class="hero-logo">
+    <img src="/static/logosmallnobg.png" width="64" height="64" alt="Clue">
+    <span class="hero-wordmark">Clue</span>
+  </div>
+  <p class="hero-sub">Telegram Gift Intelligence. Browse every gift collection using the strongest <a class="hero-link" href="https://app.clue.tg/app">search filters</a> available, find the rarest attribute combinations, use the <a class="hero-link" href="https://app.clue.tg/app#tools">Monochrome Calculator</a> to receive a percentage based score, and <a class="hero-link" href="https://app.clue.tg/app#collections">track market caps</a> — all in one place.</p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="https://app.clue.tg/app">
+      Browse Gifts
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <a class="btn-secondary" href="https://app.clue.tg/app#tools">
+      Monochrome Calculator
+    </a>
+  </div>
+</section>
 
-  <a class="notify-card" href="https://t.me/cluesupport" target="_blank">
-    <div class="tg-icon">✈</div>
-    <div class="notify-text">
-      <div class="notify-title">Follow @cluesupport on Telegram</div>
-      <div class="notify-sub">Get notified when we launch.</div>
-    </div>
-    <span class="notify-arrow">→</span>
-  </a>
-
-  <footer>
-    Powered by <a href="https://t.me/hashtag" target="_blank" style="color:#2e4060;text-decoration:none;">@hashtag</a>
-  </footer>
+<!-- Stats strip -->
+<div class="stats-strip">
+  <div class="stat-item">
+    <div class="stat-num" id="stat-gifts">—</div>
+    <div class="stat-label">Gifts Indexed</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" id="stat-collections">—</div>
+    <div class="stat-label">Collections</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" id="stat-backdrops">—</div>
+    <div class="stat-label">Backdrop Colors</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" id="stat-models">—</div>
+    <div class="stat-label">Distinct Models</div>
+  </div>
 </div>
 
+<!-- Features -->
+<div class="section">
+  <div class="section-label">Everything you need</div>
+  <h2 class="section-title">Built for serious collectors</h2>
+  <p class="section-sub">Every tool you need to find, evaluate, and understand Telegram gifts.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00c2ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
+        </svg>
+      </div>
+      <div class="feature-title">Gift Search</div>
+      <div class="feature-desc">Filter across millions of gifts by collection, model, backdrop, and symbol. Context-aware filters narrow your options as you go. Free-text search finds anything instantly.</div>
+      <span class="feature-tag">→ Browse Gifts</span>
+    </div>
+
+    <div class="feature-card accent">
+      <div class="feature-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#82b3c1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+      </div>
+      <div class="feature-title">Monochrome Calculator</div>
+      <div class="feature-desc">Score any gift 0–100% based on how closely its model color matches the backdrop. Paste any Fragment or Telegram gift link and get an instant perceptual color match analysis.</div>
+      <span class="feature-tag">→ Calculate Score</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#bd9bbc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>
+      </div>
+      <div class="feature-title">Market Cap</div>
+      <div class="feature-desc">Browse real-time floor prices and market caps across every collection. Sortable by supply, floor price, cap, and volume — with live GRAM/USD conversion.</div>
+      <span class="feature-tag">→ View Market Cap</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6678a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+      </div>
+      <div class="feature-title">Full Coverage</div>
+      <div class="feature-desc">Every Telegram gift collection tracked from day one, continuously updated as new gifts are released. Live prices pulled directly from Fragment and market data from see.tg.</div>
+      <span class="feature-tag">→ Explore Collections</span>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-banner">
+  <h2>Start exploring gifts</h2>
+  <p>10 million gifts. 100+ collections. Everything in one place.</p>
+  <a class="btn-primary" href="https://app.clue.tg/app" style="display:inline-flex;margin-bottom:24px;">
+    Open Clue
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+  </a>
+  <br>
+  <a class="tg-card" href="https://t.me/cluesupport" target="_blank" rel="noopener noreferrer">
+    <div class="tg-icon">✈</div>
+    <div class="tg-text">
+      <div class="tg-title">Follow @cluesupport on Telegram</div>
+      <div class="tg-sub">Updates, new features, and announcements.</div>
+    </div>
+    <span class="tg-arrow">→</span>
+  </a>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">
+    <img src="/static/logosmallnobg.png" width="16" height="16" alt="Clue">
+    Clue
+  </div>
+  <div class="footer-links">
+    <a class="footer-link" href="https://app.clue.tg/app">App</a>
+    <a class="footer-link" href="https://app.clue.tg/app#faq">FAQ</a>
+    <a class="footer-link" href="https://t.me/cluesupport" target="_blank" rel="noopener noreferrer">Telegram</a>
+  </div>
+  <div class="footer-right">Powered by <a href="https://t.me/hashtag" target="_blank" rel="noopener noreferrer" style="color:#88a2c8;font-weight:600;">@hashtag</a> · Gift data: <a href="https://t.me/GiftChanges" target="_blank" rel="noopener noreferrer" style="color:#88a2c8;font-weight:600;">@GiftChanges</a></div>
+</footer>
+
+<script>
+async function loadStats(attempt = 1) {
+  try {
+    const fmt = n => n >= 1e6
+      ? (n / 1e6).toFixed(1) + 'M'
+      : n >= 1000 ? (n / 1000).toFixed(0) + 'K' : n.toString();
+
+    const [stats, rarity, facets] = await Promise.all([
+      fetch('https://app.clue.tg/api/stats').then(r => r.json()),
+      fetch('https://app.clue.tg/api/rarity').then(r => r.json()),
+      fetch('https://app.clue.tg/api/facets').then(r => r.json()),
+    ]);
+
+    document.getElementById('stat-gifts').textContent = fmt(stats.total);
+    document.getElementById('stat-collections').textContent = facets.collections.length;
+    document.getElementById('stat-backdrops').textContent = rarity.backdrops.length;
+    document.getElementById('stat-models').textContent = rarity.models.length;
+  } catch (e) {
+    // Hero stats used to just sit at "—" forever on any failure with zero
+    // signal anywhere. Retry a couple times (transient network/cold-start
+    // blips are the common case), then at least surface it to the console
+    // so a real outage is debuggable instead of invisible.
+    if (attempt < 3) {
+      setTimeout(() => loadStats(attempt + 1), 2000 * attempt);
+    } else {
+      console.error('loadStats failed after 3 attempts:', e);
+    }
+  }
+}
+loadStats();
+
+// Wire feature tags to app sections
+document.querySelectorAll('.feature-tag').forEach((tag, i) => {
+  const hashes = ['', '#tools', '#collections', ''];
+  tag.style.cursor = 'pointer';
+  tag.addEventListener('click', () => {
+    window.location.href = 'https://app.clue.tg/app' + hashes[i];
+  });
+});
+</script>
 </body>
 </html>
